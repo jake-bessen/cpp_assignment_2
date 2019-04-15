@@ -40,7 +40,12 @@ int main() {
 				<< "1) Dictionary \n"
 				<< "2) List words with three z's \n"
 				<< "3) List words with q without following u \n"
-				<< "4) Exit"
+				<< "4) List Words that are both a noun and verb \n"
+				<< "5) List words that are palindromes \n"
+				<< "6) Anagram generator \n"
+				<< "7) Guessing game \n"
+				<< "8) Fun with Tri-Grams \n"
+				<< "9) Exit \n"
 				<< endl;
 			cout << "\nPlease enter menu item: ";
 
@@ -72,14 +77,46 @@ int main() {
 			system("CLS");
 			x = 0;
 			break;
+			
 		case 3:
 			//Q without folling u menu
-			dictionary.findQu();
+			dictionary.findQu();	
 			system("pause");
 			system("CLS");
 			x = 0;
 			break;
+		
 		case 4:
+			
+			system("pause");
+			system("CLS");
+			x = 0;
+			break;
+		case 5:
+			
+			system("pause");
+			system("CLS");
+			x = 0;
+			break;
+		case 6:
+			
+			system("pause");
+			system("CLS");
+			x = 0;
+			break;
+		case 7:
+			
+			system("pause");
+			system("CLS");
+			x = 0;
+			break;
+		case 8:
+			
+			system("pause");
+			system("CLS");
+			x = 0;
+			break;
+		case 9:
 			// Program exit functionality 
 			char exit[50];
 			cout << "are you sure you want to exit? y/n" << endl;
@@ -92,7 +129,7 @@ int main() {
 				system("CLS");
 			}
 			else {
-				x = 4;
+				x = 9;
 				system("CLS");
 			}
 			break;

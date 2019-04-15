@@ -115,12 +115,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Adjective.cpp" />
+    <ClCompile Include="Adverb.cpp" />
     <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="MiscWord.cpp" />
+    <ClCompile Include="Noun.cpp" />
+    <ClCompile Include="NounAndVerb.cpp" />
+    <ClCompile Include="Preposition.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Verb.cpp" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adjective.h" />
+    <ClInclude Include="Adverb.h" />
     <ClInclude Include="Dictionary.h" />
+    <ClInclude Include="MiscWord.h" />
+    <ClInclude Include="Noun.h" />
+    <ClInclude Include="NounAndVerb.h" />
+    <ClInclude Include="Preposition.h" />
+    <ClInclude Include="Verb.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
