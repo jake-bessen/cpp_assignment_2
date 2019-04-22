@@ -93,13 +93,17 @@ int main() {
 			x = 0;
 			break;
 		case 5:
-			
+			cout << "The following words are palendromes" << endl;
+			dictionary.palendrome();
 			system("pause");
 			system("CLS");
 			x = 0;
 			break;
 		case 6:
-			
+			cout << "please enter anagram search word: ";
+			cin >> search;;
+			cout << endl;
+			dictionary.anagram(search);
 			system("pause");
 			system("CLS");
 			x = 0;

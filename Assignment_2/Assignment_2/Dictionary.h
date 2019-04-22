@@ -18,6 +18,9 @@ public:
 	void isQu(string);
 	void threeZees();
 	void isThreeZees(string);
+	void palendrome();
+	void anagram(string);	
+	bool isAnagram(string, string);
 	void loadDictionary(string);
 private:
 	vector<Word*> dictionary_vector;

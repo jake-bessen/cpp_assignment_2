@@ -14,7 +14,6 @@ Word* Dictionary::findWord(string searchWord) {
 			return (*pDictionaryVector);
 		}
 	}
-
 	return nullptr;
 }
 
@@ -42,12 +41,9 @@ void Dictionary::isQu(string test_word) {
 
 //iterates through dictionary vector and runs function isThreeZees to determine if a word has more than 3 z's. 
 void Dictionary::threeZees() {
-	string testWord;
-
-	cout << "List of words with more than three z's;" << endl;
+	cout << "List of words with more than three z's;" << endl;	
 	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
-		testWord = (*word)->getWord();
-		isThreeZees(testWord);
+		isThreeZees((*word)->getWord());
 	}
 }
 
@@ -64,6 +60,40 @@ void Dictionary::isThreeZees(string testWord) {
 		}
 	}
 	numberOfZees = 0;
+}
+
+void Dictionary::palendrome() {
+
+	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
+		if ((*word)->isPalendrome()) {
+			cout << (*word)->getWord() << endl;
+		}
+	}
+}
+
+void Dictionary::anagram(string inputString){
+	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
+		if (	isAnagram(inputString, (*word)->getWord())	) {
+			cout << (*word)->getWord() << endl;
+		}
+	}
+}
+
+bool Dictionary::isAnagram(string str1, string str2) {
+	int count1[26] = {0};
+	int count2[26] = {0};
+	for (string::iterator i = str1.begin(); i != str1.end(); ++i) {
+		count1[*i - 'a'] ++;
+	}
+	for (string::iterator i = str2.begin(); i != str2.end(); ++i) {
+		count2[*i - 'a'] ++;
+	}
+	for (int i = 0 ; i < 26; i++) {
+		if (count1[i] != count2[i])
+			return false;
+	}
+
+	return true;
 }
 
 //loads and parses the dictionary file specified
@@ -83,9 +113,7 @@ void Dictionary::loadDictionary(string dictionaryFile) {
 				currentWord->setDefinition(record);
 			}
 			else if ((lineNumber % 4) == 3) {
-				for () {
-					
-				}
+/*
 				switch (record[0]) {
 				case 1: // Verb
 					Verb * currentVerb = new Verb
@@ -93,6 +121,8 @@ void Dictionary::loadDictionary(string dictionaryFile) {
 					dictionary_vector.push_back(currentWord);
 					break;
 				}
+
+*/
 				dictionary_vector.push_back(currentWord);
 				currentWord = new Word;
 			}
