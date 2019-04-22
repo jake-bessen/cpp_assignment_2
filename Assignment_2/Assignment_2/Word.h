@@ -14,13 +14,13 @@ public:
 	void setWord(string);
 	string getDefinition();
 	void setDefinition(string);
-	string getType();
-	void setType(string);
 	void printDefinition();
+	bool isPalendrome();
+	virtual bool isVerb();
+	virtual bool isNoun();
 private:
 	string word;
 	string definition;
-	string type;
 };
 
 #endif

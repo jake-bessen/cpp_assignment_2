@@ -20,15 +20,18 @@ void Word::setDefinition(string inDefinition) {
 	definition = inDefinition;
 }
 
-string Word::getType() {
-	return string();
-}
-
-void Word::setType(string intype)
-{
-	type = intype;
-}
-
 void Word::printDefinition() {
 	cout << getDefinition() << endl;
+}
+
+bool isPalendrome() {
+
+}
+
+bool Word::isVerb() {
+	return false;
+}
+
+bool Word::isNoun() {
+	return false;
 }

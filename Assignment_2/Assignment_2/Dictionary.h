@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include "Word.h"
+#include "Verb.h"
 using namespace std;
 
 class Dictionary {

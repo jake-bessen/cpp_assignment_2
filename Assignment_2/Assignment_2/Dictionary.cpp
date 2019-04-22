@@ -1,5 +1,6 @@
 #include "Dictionary.h"
 
+
 Dictionary::Dictionary() {}
 
 Dictionary::~Dictionary() {}
@@ -82,7 +83,16 @@ void Dictionary::loadDictionary(string dictionaryFile) {
 				currentWord->setDefinition(record);
 			}
 			else if ((lineNumber % 4) == 3) {
-				currentWord->setType(record);
+				for () {
+					
+				}
+				switch (record[0]) {
+				case 1: // Verb
+					Verb * currentVerb = new Verb
+					
+					dictionary_vector.push_back(currentWord);
+					break;
+				}
 				dictionary_vector.push_back(currentWord);
 				currentWord = new Word;
 			}

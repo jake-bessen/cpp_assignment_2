@@ -6,5 +6,6 @@ class Verb :
 public:
 	Verb();
 	~Verb();
+	bool isVerb();
 };
 

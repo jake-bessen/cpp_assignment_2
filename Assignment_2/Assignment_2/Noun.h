@@ -4,5 +4,6 @@ class Noun : public Word {
 public:
 	Noun();
 	~Noun();
+	bool isNoun();
 };
 

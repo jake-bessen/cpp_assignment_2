@@ -10,3 +10,7 @@ Noun::Noun()
 Noun::~Noun()
 {
 }
+
+bool Noun::isNoun() {
+	return true;
+}

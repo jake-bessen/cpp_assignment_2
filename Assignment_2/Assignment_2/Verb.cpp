@@ -10,3 +10,7 @@ Verb::Verb()
 Verb::~Verb()
 {
 }
+
+bool Verb::isVerb() {
+	return true;
+}
