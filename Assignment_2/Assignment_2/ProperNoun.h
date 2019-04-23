@@ -1,6 +1,6 @@
 #pragma once
 #include "Noun.h"
-class ProperNoun : public Noun {
+class ProperNoun : virtual public Noun {
 public:
 	ProperNoun();
 	ProperNoun(string, string);

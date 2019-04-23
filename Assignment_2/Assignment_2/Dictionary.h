@@ -30,6 +30,7 @@ public:
 	void anagram(string);	
 	bool isAnagram(string, string);
 	void loadDictionary(string);
+	void getTotalNumberOfWords();
 private:
 	vector<Word*> dictionary_vector;
 };

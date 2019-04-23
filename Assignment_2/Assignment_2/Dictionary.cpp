@@ -168,4 +168,12 @@ void Dictionary::loadDictionary(string dictionaryFile) {
 	}
 	myfile.close();
 	system("CLS");
+	getTotalNumberOfWords();
+	system("pause");
+	system("CLS");
+}
+
+void Dictionary::getTotalNumberOfWords()
+{
+	cout << "The dictionary has: " <<size(dictionary_vector) << " word definitions." << endl;
 }

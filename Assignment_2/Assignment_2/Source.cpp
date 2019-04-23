@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include "Dictionary.h"
-#include "Word.h"
 using namespace std;
 
 // Returns int value only if arbitary input string is an int value between 0 and 9
@@ -35,12 +34,13 @@ int main() {
 		switch (x)
 		{
 		case 0:
-			cout << "Main menu \n"
-				<< "------------------------------------------ \n"
+			
+			cout << "Main Menu \n"
+				<< "----------------------------------------------------- \n"
 				<< "1) Dictionary \n"
-				<< "2) List words with three z's \n"
-				<< "3) List words with q without following u \n"
-				<< "4) List Words that are both a noun and verb \n"
+				<< "2) List words with three or more z's \n"
+				<< "3) List words with the letter q without a following u \n"
+				<< "4) List Words that are both a noun and a verb \n"
 				<< "5) List words that are palindromes \n"
 				<< "6) Anagram generator \n"
 				<< "7) Guessing game \n"
@@ -89,7 +89,7 @@ int main() {
 			break;
 		
 		case 4:
-			cout << "The following words are verb - nouns" << endl;
+			cout << "The following words are verbs as well as nouns" << endl;
 			dictionary.printVerbNoun();
 			system("pause");
 			system("CLS");
@@ -103,7 +103,7 @@ int main() {
 			x = 0;
 			break;
 		case 6:
-			cout << "please enter anagram search word: ";
+			cout << "Please enter anagram search word: ";
 			cin >> search;;
 			cout << endl;
 			dictionary.anagram(search);
