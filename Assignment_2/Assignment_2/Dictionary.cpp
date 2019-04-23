@@ -62,6 +62,14 @@ void Dictionary::isThreeZees(string testWord) {
 	numberOfZees = 0;
 }
 
+void Dictionary::printVerbNoun() {
+	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
+		if ((*word)->isVerb() && (*word)->isNoun()) {
+			cout << (*word)->getWord() << endl;
+		}
+	}
+}
+
 void Dictionary::palendrome() {
 
 	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
@@ -99,32 +107,61 @@ bool Dictionary::isAnagram(string str1, string str2) {
 //loads and parses the dictionary file specified
 void Dictionary::loadDictionary(string dictionaryFile) {
 	ifstream myfile(dictionaryFile);
-	string record;
+	string record , word , definition;
 	cout << "loading dictionary . . .";
 	if (myfile.is_open()) {
-		Word *currentWord = new Word;
-		int lineNumber = 1;
+		int lineNumber = 1;	
 		while (!myfile.eof()) {
+
 			getline(myfile, record);
 			if ((lineNumber % 4) == 1) {
-				currentWord->setWord(record);
+				word = record;
 			}
 			else if ((lineNumber % 4) == 2) {
-				currentWord->setDefinition(record);
+				definition = record;
 			}
 			else if ((lineNumber % 4) == 3) {
-/*
-				switch (record[0]) {
-				case 1: // Verb
-					Verb * currentVerb = new Verb
-					
+				Word * currentWord;
+				string::iterator x = record.begin();
+				string::iterator y = record.end();
+				int recordType = (*x - 'a') * 100 + (*(y - 1) - 'a');
+				switch (recordType)
+				{
+				case 2121: // Verb "vv" (v - a) * 100 + (v - a) = 2121
+					currentWord = new Verb(word, definition);
 					dictionary_vector.push_back(currentWord);
 					break;
+				case 1313: // Noun "nn" (n - a) * 100 + (n - a) = 1313
+					currentWord = new Noun(word, definition);
+					dictionary_vector.push_back(currentWord);
+					break;
+				case 9: // Adjective "aj" (a - a) * 100 + (j - a) = 0009
+					currentWord = new Adjective(word, definition);
+					dictionary_vector.push_back(currentWord);
+					break;	
+				case 21: // Adverb "av" (a - a) * 100 + (v - a) = 0021
+					currentWord = new Adverb(word, definition);
+					dictionary_vector.push_back(currentWord);
+					break;
+				case 1202: // MiscWord "mc" (m - a) * 100 + (c - a) = 1202
+					currentWord = new MiscWord(word, definition);
+					dictionary_vector.push_back(currentWord);
+					break;
+				case 1321: // NounAndVerb "nv" (n - a) * 100 + (v - a) = 1321
+					currentWord = new NounAndVerb(word, definition);
+					dictionary_vector.push_back(currentWord);
+					break;
+				case 1515: //Preposition "pp" (p - a) * 100 + (p - a) = 1515
+					currentWord = new Preposition(word, definition);
+					dictionary_vector.push_back(currentWord);
+					break;	
+				case 1513: //ProperNoun "pn" (p - a) * 100 + (p - a) = 1513
+					currentWord = new ProperNoun(word, definition);
+					dictionary_vector.push_back(currentWord);
+					break;
+				default:
+					break;
 				}
-
-*/
-				dictionary_vector.push_back(currentWord);
-				currentWord = new Word;
 			}
 			lineNumber++;
 		}

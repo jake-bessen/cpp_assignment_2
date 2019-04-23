@@ -1,10 +1,11 @@
 #pragma once
 #include "MiscWord.h"
-class Preposition :
-	public MiscWord
-{
+class Preposition : public MiscWord {
 public:
 	Preposition();
-	~Preposition();
+	Preposition(string, string);
+	string getDefinition();
 };
+
+
 

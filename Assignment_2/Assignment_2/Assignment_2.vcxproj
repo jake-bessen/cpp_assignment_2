@@ -122,6 +122,7 @@
     <ClCompile Include="Noun.cpp" />
     <ClCompile Include="NounAndVerb.cpp" />
     <ClCompile Include="Preposition.cpp" />
+    <ClCompile Include="ProperNoun.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Verb.cpp" />
     <ClCompile Include="Word.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="Noun.h" />
     <ClInclude Include="NounAndVerb.h" />
     <ClInclude Include="Preposition.h" />
+    <ClInclude Include="ProperNoun.h" />
     <ClInclude Include="Verb.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>

@@ -58,10 +58,12 @@ int main() {
 			// Dictionary search menu
 			cout << "please enter search word:" << endl;
 			cin >> search;
+			system("CLS");
 			pSearchWord = dictionary.findWord(search);
 			//exception handling for null pointer return
 			if (pSearchWord != nullptr) {
-				pSearchWord->printDefinition();
+				cout << pSearchWord->getWord() << endl;
+				cout << "Definition: " << pSearchWord->getDefinition() << endl;
 			}
 			else {
 				cout << "Word not found" << endl;
@@ -87,7 +89,8 @@ int main() {
 			break;
 		
 		case 4:
-			
+			cout << "The following words are verb - nouns" << endl;
+			dictionary.printVerbNoun();
 			system("pause");
 			system("CLS");
 			x = 0;

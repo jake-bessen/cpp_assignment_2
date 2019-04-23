@@ -1,9 +1,10 @@
 #pragma once
 #include "Word.h"
-class Noun : public Word {
+class Noun : virtual public Word {
 public:
-	Noun();
-	~Noun();
+	Noun() {}
+	Noun(string, string);
 	bool isNoun();
+	string getDefinition();
 };
 

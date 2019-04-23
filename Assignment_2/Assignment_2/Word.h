@@ -9,17 +9,18 @@ using namespace std;
 
 class Word {
 public:
-	Word();
-	~Word();
-	string getWord();
+	Word ();
+	Word ( string , string );
+	~Word ();
+	virtual string getWord();
 	void setWord(string);
-	string getDefinition();
+	virtual string getDefinition();
 	void setDefinition(string);
 	void printDefinition();
 	bool isPalendrome();
 	virtual bool isVerb();
 	virtual bool isNoun();
-private:
+protected:
 	string word;
 	string definition;
 };

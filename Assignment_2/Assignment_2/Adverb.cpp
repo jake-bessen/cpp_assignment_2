@@ -1,12 +1,11 @@
 #include "Adverb.h"
 
+Adverb::Adverb(string inWord, string inDefinition) : Word(inWord, inDefinition){
 
-
-Adverb::Adverb()
-{
 }
 
 
-Adverb::~Adverb()
+string Adverb::getDefinition()
 {
+	return "(adv.) " + definition;
 }

@@ -1,6 +1,12 @@
 #include "Word.h"
 using namespace std;
+
 Word::Word() {}
+
+Word::Word( string inWord , string inDefinition) {
+	word = inWord;
+	definition = inDefinition;
+}
 
 Word::~Word() {}
 

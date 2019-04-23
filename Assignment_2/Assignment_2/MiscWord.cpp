@@ -1,12 +1,10 @@
 #include "MiscWord.h"
 
+MiscWord::MiscWord(string inWord, string inDefinition) : Word(inWord, inDefinition) {
 
-
-MiscWord::MiscWord()
-{
 }
 
-
-MiscWord::~MiscWord()
+string MiscWord::getDefinition()
 {
+	return "(misc.) " + definition;
 }

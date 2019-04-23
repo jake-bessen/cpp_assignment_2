@@ -2,11 +2,13 @@
 
 
 
-Adjective::Adjective()
-{
+Adjective::Adjective(string inWord, string inDefinition) : Word(inWord, inDefinition) {
+
 }
 
 
-Adjective::~Adjective()
+string Adjective::getDefiniton()
 {
+
+	return "(adj.) " + definition;
 }

@@ -39,10 +39,13 @@
     <ClCompile Include="MiscWord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NounAndVerb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Preposition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NounAndVerb.cpp">
+    <ClCompile Include="ProperNoun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,10 +71,13 @@
     <ClInclude Include="MiscWord.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NounAndVerb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Preposition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NounAndVerb.h">
+    <ClInclude Include="ProperNoun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

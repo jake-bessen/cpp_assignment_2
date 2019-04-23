@@ -1,11 +1,11 @@
 #pragma once
 #include "Word.h"
-class Verb :
-	public Word
+class Verb : virtual public Word
 {
 public:
-	Verb();
-	~Verb();
+	Verb() {}
+	Verb( string , string );
 	bool isVerb();
+	string getDefinition();
 };
 

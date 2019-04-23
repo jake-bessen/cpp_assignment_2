@@ -2,11 +2,15 @@
 
 
 
-Preposition::Preposition()
+Preposition::Preposition() {
+}
+
+Preposition::Preposition(string inWord, string inDefinition) : Word(inWord, inDefinition)
 {
 }
 
-
-Preposition::~Preposition()
-{
+string Preposition::getDefinition() {
+	return "(prep) " + definition;
 }
+
+

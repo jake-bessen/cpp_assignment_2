@@ -1,8 +1,9 @@
 #pragma once
 #include "Word.h"
-class MiscWord : public Word {
+class MiscWord : virtual public Word {
 public:
-	MiscWord();
-	~MiscWord();
+	MiscWord() {}
+	MiscWord(string, string);
+	string getDefinition();
 };
 

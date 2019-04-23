@@ -2,11 +2,10 @@
 
 
 
-NounAndVerb::NounAndVerb()
-{
+NounAndVerb::NounAndVerb(string inName, string inDefinition) : Word(inName, inDefinition){
 }
 
-
-NounAndVerb::~NounAndVerb()
+string NounAndVerb::getDefinition()
 {
+	return "(n.v.) " + definition;
 }
