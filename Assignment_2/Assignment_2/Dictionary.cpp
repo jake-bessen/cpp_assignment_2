@@ -1,6 +1,5 @@
 #include "Dictionary.h"
 
-
 Dictionary::Dictionary() {}
 
 Dictionary::~Dictionary() {}
@@ -15,6 +14,15 @@ Word* Dictionary::findWord(string searchWord) {
 		}
 	}
 	return nullptr;
+}
+
+void Dictionary::loadTrigram(){
+	cout << "Processing Trigrams . . ." << endl;
+	for (std::vector<Word*>::iterator pDictionaryVector = dictionary_vector.begin(); pDictionaryVector != dictionary_vector.end(); ++pDictionaryVector) {
+		loadString((*pDictionaryVector)->getWord());
+	}
+	normaliseIndex();
+	system("CLS");
 }
 
 //iterates through dictionary vector and runs function isQu to determine if a word has q without folloing u. 
@@ -167,9 +175,6 @@ void Dictionary::loadDictionary(string dictionaryFile) {
 		}
 	}
 	myfile.close();
-	system("CLS");
-	getTotalNumberOfWords();
-	system("pause");
 	system("CLS");
 }
 

@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include "Trigram.h"
 #include "Word.h"
 #include "Verb.h"
 #include "Noun.h"
@@ -16,22 +17,23 @@
 #include "ProperNoun.h"
 using namespace std;
 
-class Dictionary {
+class Dictionary : public Trigram {
 public:
 	Dictionary();
 	~Dictionary();
 	Word* findWord(string);
+	void loadTrigram();
 	void findQu();
-	void isQu(string);
 	void threeZees();
 	void printVerbNoun();
-	void isThreeZees(string);
 	void palendrome();
 	void anagram(string);	
-	bool isAnagram(string, string);
 	void loadDictionary(string);
 	void getTotalNumberOfWords();
 private:
+	void isQu(string);
+	void isThreeZees(string);
+	bool isAnagram(string, string);
 	vector<Word*> dictionary_vector;
 };
 
