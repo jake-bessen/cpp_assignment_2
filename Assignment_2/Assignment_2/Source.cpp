@@ -1,4 +1,4 @@
-// Jake Bessen - CSP2104 Assignment 1
+// Jake Bessen - CSP2104 Assignment 2
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -20,62 +20,7 @@ int stringConvert(char xChar[2]) {
 	return x;
 }
 
-/*
-void printGuess(string, string, int, bool) {
 
-
-
-}
-
-void guessingGame() {
-	/////////////////////////////////////////////////////
-	string testWord = "doing";
-	string testDefinition = "A simple noun that I can use for debugging";
-	//////////////////////////////////////////////////////
-	// actual program
-	string guess;
-	string::iterator i = guess.begin();
-	bool correct;
-	int x = 0;
-	while (x != -1) {
-		switch (x)	{
-		case 0:
-			cout << testDefinition << endl;
-			cout << "Number of letters" << size(testWord);
-			cin >> guess;
-			if (testDefinition == testWord) {
-				correct = true;
-				x = 4;
-			}
-			else {
-				x = 1;
-				correct = false;
-			}
-			break;
-		case 1:
-			printGuess(testWord, guess , );
-			if (testDefinition == testWord) {
-				correct = true;
-				x = 4;
-			}
-			else {
-				x = 2;
-				correct = false;
-			}
-			break;
-		case 2:
-			break;
-		case 3:
-			x = -1;
-			break;
-		}
-	}
-	cout << testWord << endl;
-	cout << testDefinition << endl;
-	system("pause");
-	system("CLS");
-}
-*/
 int main() {
 	// Dictionary object declared and dictionary file loaded
 	Dictionary dictionary;
@@ -173,8 +118,8 @@ int main() {
 			x = 0;
 			break;
 		case 7:
-			cout << "Guessing Game" << endl;
-			//guessingGame();
+			dictionary.populateVerbVector();
+			dictionary.loadGuessingGame();
 			system("pause");
 			system("CLS");
 			x = 0;

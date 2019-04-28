@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include "Trigram.h"
+#include "guessingGame.h"
 #include "Word.h"
 #include "Verb.h"
 #include "Noun.h"
@@ -17,7 +18,7 @@
 #include "ProperNoun.h"
 using namespace std;
 
-class Dictionary : public Trigram {
+class Dictionary : public Trigram, public guessingGame {
 public:
 	Dictionary();
 	~Dictionary();
@@ -30,11 +31,14 @@ public:
 	void anagram(string);	
 	void loadDictionary(string);
 	void getTotalNumberOfWords();
+	void loadGuessingGame();
+	void populateVerbVector();
 private:
 	void isQu(string);
 	void isThreeZees(string);
 	bool isAnagram(string, string);
 	vector<Word*> dictionary_vector;
+	vector<Word*> verb_vector;
 };
 
 #endif

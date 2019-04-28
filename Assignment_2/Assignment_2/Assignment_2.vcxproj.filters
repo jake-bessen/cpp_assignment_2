@@ -51,6 +51,9 @@
     <ClCompile Include="Trigram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="guessingGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Word.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Trigram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="guessingGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -182,3 +182,22 @@ void Dictionary::getTotalNumberOfWords()
 {
 	cout << "The dictionary has: " <<size(dictionary_vector) << " word definitions." << endl;
 }
+
+void Dictionary::loadGuessingGame(){
+	int length = size(verb_vector), wordPosition;
+	srand(time(0));
+	wordPosition = rand() % length;
+	vector<Word*>::iterator pVerbVector = find(verb_vector.begin(), verb_vector.end(), wordPosition);
+	guessingGameMenu((*pVerbVector)->getWord(),(*pVerbVector)->getDefinition());
+}
+
+void Dictionary::populateVerbVector(){
+	Word* currentVerb;
+
+	for (std::vector<Word*>::iterator pDictionaryVector = dictionary_vector.begin(); pDictionaryVector != dictionary_vector.end(); ++pDictionaryVector) {
+		if ((*pDictionaryVector)->isNoun()) {
+			currentVerb = *pDictionaryVector;
+			verb_vector.push_back(currentVerb);
+		}
+	}
+}

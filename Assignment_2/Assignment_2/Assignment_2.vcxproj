@@ -118,6 +118,7 @@
     <ClCompile Include="Adjective.cpp" />
     <ClCompile Include="Adverb.cpp" />
     <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="guessingGame.cpp" />
     <ClCompile Include="MiscWord.cpp" />
     <ClCompile Include="Noun.cpp" />
     <ClCompile Include="NounAndVerb.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Adjective.h" />
     <ClInclude Include="Adverb.h" />
     <ClInclude Include="Dictionary.h" />
+    <ClInclude Include="guessingGame.h" />
     <ClInclude Include="MiscWord.h" />
     <ClInclude Include="Noun.h" />
     <ClInclude Include="NounAndVerb.h" />
