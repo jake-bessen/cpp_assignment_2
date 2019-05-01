@@ -2,7 +2,8 @@
 
 Trigram::Trigram() {}
 
-void Trigram::loadString(string testString) {
+void Trigram::loadString(string testString) // Loads a string into the index matrix.  
+{
 	int	rowIndex, columnIndex, resultIndex;
 	testString = ' ' + testString + ' ';
 	for (string::iterator i = testString.begin(); i <= testString.end() - 3; i++) {
@@ -16,7 +17,7 @@ void Trigram::loadString(string testString) {
 	}
 }
 
-int Trigram::returnIndex(char a)
+int Trigram::returnIndex(char a) // returns index value between zero and 26 from char input
 {
 	int index = -1;
 	int currentCharCode = (int)a;
@@ -29,7 +30,8 @@ int Trigram::returnIndex(char a)
 	return index;
 }
 
-char Trigram::returnChar(int index){
+char Trigram::returnChar(int index) // Returns character from index value
+{
 	char indexChar = ' ';
 	if(index == 0) {
 		indexChar = ' ';
@@ -40,7 +42,9 @@ char Trigram::returnChar(int index){
 	return indexChar;
 }
 
-void Trigram::normaliseIndex() {
+void Trigram::normaliseIndex() //Itterates through index matrix and creates ordered matrix, 
+// probability matrix and cumulative probability matrix.  
+{ 
 	for (int row = 0; row < 27; row++) {
 		for (int column = 0; column < 27; column++) {
 			populateOrderedList(row, column);
@@ -50,7 +54,8 @@ void Trigram::normaliseIndex() {
 	}
 }
 
-void Trigram::populateProbability(int row, int column) {
+void Trigram::populateProbability(int row, int column) // sum(( x , y , i1 ) ... (x , y , in)) 
+{
 	int sumMN = 0;
 	double sum = 0;
 	for (int i = 0; i < 27; i++) {
@@ -102,19 +107,18 @@ void Trigram::populateOrderedList(int row, int  column) {
 string Trigram::produceFakeWord() {
 	srand(seed);
 	seed++;
-	char randomChar = rand() % 26 + 2 + 'a';
 	double random = (rand() % 100) * 0.01;
-	string fakeWord = "-";
-	fakeWord[0] = randomChar;
+	string fakeWord = "a";
+	fakeWord[0] = returnChar(rand() % 26 + 1);
 	fakeWord = fakeWord + randLetter(returnIndex(' '), returnIndex(fakeWord[0]), random, false );
 	while (*(fakeWord.end()-1) != ' ') {
-		int letterCount = 2;
+		int letterCount = 0;
 		random = (rand() % 100) * 0.01;
-		if (letterCount < 5) {
-			fakeWord = fakeWord + randLetter(returnIndex(*(fakeWord.end() - 2)), returnIndex(*(fakeWord.end() - 1)), random, false);
+		if (letterCount < 2) {
+			fakeWord = fakeWord + randLetter(  returnIndex(*(fakeWord.end() - 2)),  returnIndex(*(fakeWord.end() - 1)), random, false  );
 		}
-		else if (letterCount >= 5 && letterCount << 20){
-			fakeWord = fakeWord + randLetter(returnIndex(*(fakeWord.end() - 2)), returnIndex(*(fakeWord.end() - 1)), random, true);
+		else {
+			fakeWord = fakeWord + randLetter(  returnIndex(*(fakeWord.end() - 2)),  returnIndex(*(fakeWord.end() - 1)), random, true  );
 		}
 		
 		letterCount++;
@@ -123,12 +127,12 @@ string Trigram::produceFakeWord() {
 }
 
 string Trigram::randLetter(int letter1, int letter2, double randomNumber, bool makeItStop) {
-	string outputString = "-";
-	if (makeItStop != 0 && cumulativeLookupTable[letter1][letter2][0] > 0.1) {
+	string outputString = "a";
+	if ( (makeItStop == true)  &&  (0.1 < cumulativeLookupTable[letter1][letter2][0])  ) {
 		outputString[0] = returnChar(0);
 		return outputString;
 	}
-	else {
+	else { // looks for where the random number between 0 and 1 fits in the cumulative distribution
 		for (int i = 0; i < 27; i++) {
 			if (randomNumber < cumulativeLookupTable[letter1][letter2][i] && makeItStop == false) {
 				outputString[0] = returnChar(i);

@@ -25,7 +25,6 @@ void guessingGame::guessingGameMenu(string Word, string definition){
 	string guess;
 	string revealedLetters;
 	int wordLength = size(Word);
-	cout << wordLength;
 	bool correct;
 	int x = 0;
 	while (x != -1) {

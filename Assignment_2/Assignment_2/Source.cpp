@@ -120,8 +120,6 @@ int main() {
 		case 7:
 			dictionary.populateVerbVector();
 			dictionary.loadGuessingGame();
-			system("pause");
-			system("CLS");
 			x = 0;
 			break;
 		case 8:	

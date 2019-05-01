@@ -21,24 +21,26 @@ using namespace std;
 class Dictionary : public Trigram, public guessingGame {
 public:
 	Dictionary();
-	~Dictionary();
 	Word* findWord(string);
-	void loadTrigram();
 	void findQu();
 	void threeZees();
 	void printVerbNoun();
 	void palendrome();
-	void anagram(string);	
-	void loadDictionary(string);
-	void getTotalNumberOfWords();
+	void anagram(string);
 	void loadGuessingGame();
 	void populateVerbVector();
+	void loadDictionary(string);
+	void loadTrigram();
+	void getTotalNumberOfWords();
 private:
 	void isQu(string);
 	void isThreeZees(string);
 	bool isAnagram(string, string);
+	int returnIndex(char a);
+
 	vector<Word*> dictionary_vector;
 	vector<Word*> verb_vector;
+	unsigned int seed = 1;
 };
 
 #endif
