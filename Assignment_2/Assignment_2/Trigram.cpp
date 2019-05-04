@@ -44,7 +44,7 @@ char Trigram::returnChar(int index) // Returns character from index value
 
 void Trigram::normaliseIndex() //Itterates through index matrix and creates ordered matrix, 
 // probability matrix and cumulative probability matrix.  
-{ 
+{
 	for (int row = 0; row < 27; row++) {
 		for (int column = 0; column < 27; column++) {
 			populateOrderedList(row, column);
@@ -54,7 +54,7 @@ void Trigram::normaliseIndex() //Itterates through index matrix and creates orde
 	}
 }
 
-void Trigram::populateProbability(int row, int column) // sum(( x , y , i1 ) ... (x , y , in)) 
+void Trigram::populateProbability(int row, int column) //Prob(x, y , i1) = Index(x , y , i1 ) / sum( Index( x , y , i1 ) ... Index(x , y , in) ) 
 {
 	int sumMN = 0;
 	double sum = 0;
@@ -75,7 +75,7 @@ void Trigram::populateCumulativeTable(int row, int column){
 	}
 }
 
-void Trigram::populateOrderedList(int row, int  column) {
+void Trigram::populateOrderedList(int row, int  column) { // creates a lookup table for the ordered most likely letters 
 	int j, x, y;
 	int prob[27] = { 0 };
 	int letter[27] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 }; 
@@ -85,7 +85,7 @@ void Trigram::populateOrderedList(int row, int  column) {
 			letter[i] = -1;
 		}
 	}
-	// Sorting algorithm
+	// Insertion Sorting algorithm implemetation
 	for (int i = 0; i < 27; i++) {
 		x = prob[i];
 		y = letter[i];
@@ -98,22 +98,29 @@ void Trigram::populateOrderedList(int row, int  column) {
 		prob[j + 1] = x;
 		letter[j + 1] = y;
 	}
-	// Insert element into table 
+	// places sorted list into ordered likelyhood lookup table 
 	for (int i = 0; i < 27; i++) {
 		orderLikelyhood[row][column][i] = letter[i];
 	}
 }
 
-string Trigram::produceFakeWord() {
+string Trigram::produceFakeWord() { // generates a fake word by randomly generating letters. The likelyhood of a particular letter being chosen is weighted according to its trigram probability
 	srand(seed);
 	seed++;
 	double random = (rand() % 100) * 0.01;
 	string fakeWord = "a";
-	fakeWord[0] = returnChar(rand() % 26 + 1);
-	fakeWord = fakeWord + randLetter(returnIndex(' '), returnIndex(fakeWord[0]), random, false );
+
+	// The first letter is generated
+	fakeWord[0] = returnChar(rand() % 26 + 1); // (1)
+
+	// returns the second letter based on " x" combination
+	fakeWord = fakeWord + randLetter(returnIndex(' '), returnIndex(fakeWord[0]), random, false ); 
+
+	// continues ammending random letters to string until "x " combination,
 	while (*(fakeWord.end()-1) != ' ') {
 		int letterCount = 0;
 		random = (rand() % 100) * 0.01;
+		// if the word gets too long, look for any likely ending
 		if (letterCount < 2) {
 			fakeWord = fakeWord + randLetter(  returnIndex(*(fakeWord.end() - 2)),  returnIndex(*(fakeWord.end() - 1)), random, false  );
 		}
@@ -127,6 +134,8 @@ string Trigram::produceFakeWord() {
 }
 
 string Trigram::randLetter(int letter1, int letter2, double randomNumber, bool makeItStop) {
+	// Using the cumulative probability table a letter is randomly chosen, with letters that have a higher likelyhood
+	// more likely to be picked 
 	string outputString = "a";
 	if ( (makeItStop == true)  &&  (0.1 < cumulativeLookupTable[letter1][letter2][0])  ) {
 		outputString[0] = returnChar(0);

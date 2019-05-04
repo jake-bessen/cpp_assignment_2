@@ -2,8 +2,9 @@
 
 Dictionary::Dictionary() {}
 
-//iterates through dictionary vector and returns pointer to word object for the string passed in or null if the word doesn't exist
-Word* Dictionary::findWord(string searchWord) {
+//Iterates through dictionary vector and returns pointer to word object for the string passed in or null if the word doesn't exist
+Word* Dictionary::findWord(string searchWord) 
+{
 	string test_word;
 	for (std::vector<Word*>::iterator pDictionaryVector = dictionary_vector.begin(); pDictionaryVector != dictionary_vector.end(); ++pDictionaryVector) {
 		test_word = (*pDictionaryVector)->getWord();
@@ -14,16 +15,17 @@ Word* Dictionary::findWord(string searchWord) {
 	return nullptr;
 }
 
-void Dictionary::loadTrigram(){
+void Dictionary::loadTrigram() // Loads entire dictionary into index
+{
 	cout << "Processing Trigrams . . .";
 	for (std::vector<Word*>::iterator pDictionaryVector = dictionary_vector.begin(); pDictionaryVector != dictionary_vector.end(); ++pDictionaryVector) {
 		loadString((*pDictionaryVector)->getWord());
 	}
-	normaliseIndex();
+	normaliseIndex(); // Processes Index into various lookup tables
 	system("CLS");
 }
 
-//iterates through dictionary vector and runs function isQu to determine if a word has q without folloing u. 
+//Iterates through dictionary vector and runs function isQu to determine if a word has q without folloing u. 
 void Dictionary::findQu() {
 	string testWord;
 	cout << "list of words with q without following u;" << endl;
@@ -68,7 +70,8 @@ void Dictionary::isThreeZees(string testWord) {
 	numberOfZees = 0;
 }
 
-void Dictionary::printVerbNoun() {
+void Dictionary::printVerbNoun() //iterates through dictionary vector and prints a word if (bool) isVerb * isNoun = true
+{
 	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
 		if ((*word)->isVerb() && (*word)->isNoun()) {
 			cout << (*word)->getWord() << endl;
@@ -76,8 +79,8 @@ void Dictionary::printVerbNoun() {
 	}
 }
 
-void Dictionary::palendrome() {
-
+void Dictionary::palendrome() // Itterates through dictionary vector and prints if isPalendome = true 
+{
 	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
 		if ((*word)->isPalendrome()) {
 			cout << (*word)->getWord() << endl;
@@ -85,7 +88,8 @@ void Dictionary::palendrome() {
 	}
 }
 
-void Dictionary::anagram(string inputString){
+void Dictionary::anagram(string inputString) // Itterates through dictionary vector and prints word if isAnagram returns true for input word
+{
 	for (std::vector<Word*>::iterator word = dictionary_vector.begin(); word != dictionary_vector.end(); ++word) {
 		if (	isAnagram(inputString, (*word)->getWord())	) {
 			cout << (*word)->getWord() << endl;
@@ -93,7 +97,9 @@ void Dictionary::anagram(string inputString){
 	}
 }
 
-bool Dictionary::isAnagram(string str1, string str2) {
+ // counts instances of each character for strings 1 & 2 then returns true if the number of instances in each string matches
+bool Dictionary::isAnagram(string str1, string str2)
+{
 	int count1[27] = {0};
 	int count2[27] = {0};
 	for (string::iterator i = str1.begin(); i != str1.end(); ++i) {
@@ -124,17 +130,19 @@ int Dictionary::returnIndex(char a) // returns index value between zero and 26 f
 	return index;
 }
 
-void Dictionary::loadGuessingGame() {
-	srand(seed);
+void Dictionary::loadGuessingGame() //Picks random verb from verb vector then passes it into guessing game ui.
+{
+	srand(time(NULL));
 	int length = size(verb_vector), wordPosition;
-	cout << size(verb_vector) << "    ";	
-	wordPosition = rand() % length;
-	vector<Word*>::iterator pVerbVector = verb_vector.begin() + wordPosition;
-	guessingGameMenu((*pVerbVector)->getWord(),(*pVerbVector)->getDefinition());
+	// bit shift rand() to generate larger random number
+	wordPosition = ( long(rand() << 15) + rand() ) % length;
+	Word* pVerb = verb_vector[wordPosition];
+	guessingGameMenu(pVerb->getWord(),pVerb->getDefinition());
 	seed++;
 }
 
-void Dictionary::populateVerbVector() {
+void Dictionary::populateVerbVector() // populates vector of verbs used in guessing game
+{
 	Word* currentVerb;
 	for (std::vector<Word*>::iterator pDictionaryVector = dictionary_vector.begin(); pDictionaryVector != dictionary_vector.end(); ++pDictionaryVector) {
 		if ((*pDictionaryVector)->isNoun()) {
@@ -145,7 +153,8 @@ void Dictionary::populateVerbVector() {
 }
 
 //loads and parses the dictionary file specified
-void Dictionary::loadDictionary(string dictionaryFile) {
+void Dictionary::loadDictionary(string dictionaryFile) 
+{
 	ifstream myfile(dictionaryFile);
 	string record , word , definition;
 	cout << "loading dictionary . . .";
@@ -210,8 +219,7 @@ void Dictionary::loadDictionary(string dictionaryFile) {
 	system("CLS");
 }
 
-void Dictionary::getTotalNumberOfWords()
+void Dictionary::getTotalNumberOfWords() //Prints the size of the dictionary vector
 {
 	cout << "The dictionary has: " <<size(dictionary_vector) << " word definitions." << endl;
 }
-
