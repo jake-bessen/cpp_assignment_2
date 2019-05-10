@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GUESSINGGAME_H
+#define GUESSINGGAME_H
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -12,6 +14,8 @@ class guessingGame
 public:
 	guessingGame() {}
 	void guessingGameMenu(string, string);
-	string printGuess(string, string, int);
+	string retrieveGuess(string, string, int);
 };
+
+#endif
 

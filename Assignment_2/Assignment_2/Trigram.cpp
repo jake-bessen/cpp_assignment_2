@@ -42,7 +42,7 @@ char Trigram::returnChar(int index) // Returns character from index value
 	return indexChar;
 }
 
-void Trigram::normaliseIndex() //Itterates through index matrix and creates ordered matrix, 
+void Trigram::computeLookupTables() //Itterates through index matrix and creates ordered matrix, 
 // probability matrix and cumulative probability matrix.  
 {
 	for (int row = 0; row < 27; row++) {
@@ -85,7 +85,7 @@ void Trigram::populateOrderedList(int row, int  column) { // creates a lookup ta
 			letter[i] = -1;
 		}
 	}
-	// Insertion Sorting algorithm implemetation
+	// Insertion sorting algorithm implemetation
 	for (int i = 0; i < 27; i++) {
 		x = prob[i];
 		y = letter[i];
@@ -137,7 +137,7 @@ string Trigram::randLetter(int letter1, int letter2, double randomNumber, bool m
 	// Using the cumulative probability table a letter is randomly chosen, with letters that have a higher likelyhood
 	// more likely to be picked 
 	string outputString = "a";
-	if ( (makeItStop == true)  &&  (0.1 < cumulativeLookupTable[letter1][letter2][0])  ) {
+	if ( (makeItStop == true)  &  (0.1 < cumulativeLookupTable[letter1][letter2][0])  ) {
 		outputString[0] = returnChar(0);
 		return outputString;
 	}
@@ -152,7 +152,8 @@ string Trigram::randLetter(int letter1, int letter2, double randomNumber, bool m
 	return outputString;
 }
 
-void Trigram::trigramMenu(){
+void Trigram::trigramMenu() // state machine for UI
+{
 	int x = 0;
 	char xChar[50];
 	while (x != -1) {
@@ -185,6 +186,9 @@ void Trigram::trigramMenu(){
 		case 3:
 			x = -1;
 			break;
+		default:
+			x = 0;
+
 		}
 	}
 }
@@ -197,18 +201,20 @@ void Trigram::threeMostLikely(){
 	getThreeMostLikely( returnIndex(searchWord[0])  ,   returnIndex(searchWord[1]) );
 }
 
-void Trigram::getThreeMostLikely(int row, int column){
+void Trigram::getThreeMostLikely(int row, int column) // Prints to screen the three most likely following letters from orderedLikelyhood lookup table based on the input index. Also prints the respective probabilities
+{ 
 	cout << "1) \"" << returnChar(orderLikelyhood[row][column][26]) << "\" ";
-	cout << "P(" << returnChar(orderLikelyhood[row][column][26]) << "|" << returnChar(row) << returnChar(column) << ")" << " = " << lookupTable[row][column][ orderLikelyhood[row][column][26] ] << endl;
+	cout << "P(" << returnChar(orderLikelyhood[row][column][26]) << "|" << returnChar(row) << returnChar(column) << ")" << " = " << lookupTable[row][column][  orderLikelyhood[row][column][26]  ] << endl;
 	
 	cout << "2) \"" << returnChar(orderLikelyhood[row][column][25]) << "\" ";
-	cout << "P(" << returnChar(orderLikelyhood[row][column][25]) << "|" << returnChar(row) << returnChar(column) << ")" << " = " << lookupTable[row][column][ orderLikelyhood[row][column][25] ] << endl;
+	cout << "P(" << returnChar(orderLikelyhood[row][column][25]) << "|" << returnChar(row) << returnChar(column) << ")" << " = " << lookupTable[row][column][  orderLikelyhood[row][column][25]  ] << endl;
 	
 	cout << "3) \"" << returnChar(orderLikelyhood[row][column][24]) << "\" ";
-	cout << "P(" << returnChar(orderLikelyhood[row][column][24]) << "|" << returnChar(row) << returnChar(column) << ")" << " = " << lookupTable[row][column][ orderLikelyhood[row][column][24] ] << endl;
+	cout << "P(" << returnChar(orderLikelyhood[row][column][24]) << "|" << returnChar(row) << returnChar(column) << ")" << " = " << lookupTable[row][column][  orderLikelyhood[row][column][24]  ] << endl;
 }
 
-int Trigram::stringConvert(char xChar[2]) {
+int Trigram::stringConvert(char xChar[2]) // Improves trigram menu item selection robustness.  
+{ 
 	int x;
 	int xMat[2] = { xChar[0] - '0', xChar[1] };
 	if (xMat[0] >= 0 && xMat[0] <= 9 && xMat[1] == 0) {

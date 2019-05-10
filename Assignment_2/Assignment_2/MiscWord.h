@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MISCWORD_H
+#define MISCWORD_H
+
 #include "Word.h"
 class MiscWord : virtual public Word {
 public:
@@ -7,3 +9,4 @@ public:
 	string getDefinition();
 };
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VERB_H
+#define VERB_H
 #include "Word.h"
 class Verb : virtual public Word
 {
@@ -8,4 +9,4 @@ public:
 	bool isVerb();
 	string getDefinition();
 };
-
+#endif

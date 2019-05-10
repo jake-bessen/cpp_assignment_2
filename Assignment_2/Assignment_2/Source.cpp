@@ -25,7 +25,7 @@ int main() {
 	// Dictionary object declared and dictionary file loaded
 	Dictionary dictionary;
 	dictionary.loadDictionary("dictionary2019.txt");
-	dictionary.loadTrigram();
+	dictionary.processTrigrams();
 	dictionary.getTotalNumberOfWords();
 	system("pause");
 	system("CLS");

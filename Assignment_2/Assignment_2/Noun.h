@@ -1,4 +1,6 @@
-#pragma once
+#ifndef NOUN_H
+#define NOUN_H
+
 #include "Word.h"
 class Noun : virtual public Word {
 public:
@@ -8,3 +10,4 @@ public:
 	string getDefinition();
 };
 
+#endif

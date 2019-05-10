@@ -15,13 +15,13 @@ Word* Dictionary::findWord(string searchWord)
 	return nullptr;
 }
 
-void Dictionary::loadTrigram() // Loads entire dictionary into index
+void Dictionary::processTrigrams() // Loads entire dictionary into index
 {
 	cout << "Processing Trigrams . . .";
 	for (std::vector<Word*>::iterator pDictionaryVector = dictionary_vector.begin(); pDictionaryVector != dictionary_vector.end(); ++pDictionaryVector) {
 		loadString((*pDictionaryVector)->getWord());
 	}
-	normaliseIndex(); // Processes Index into various lookup tables
+	computeLookupTables(); // Processes Index into various lookup tables
 	system("CLS");
 }
 
@@ -35,6 +35,7 @@ void Dictionary::findQu() {
 		isQu(testWord);
 	}
 }
+
 
 // itterates through test_word and prints if it has a q without folling u.  
 void Dictionary::isQu(string test_word) {
@@ -156,7 +157,8 @@ void Dictionary::populateVerbVector() // populates vector of verbs used in guess
 void Dictionary::loadDictionary(string dictionaryFile) 
 {
 	ifstream myfile(dictionaryFile);
-	string record , word , definition;
+	string record, word = "", definition = "-";
+	Word * currentWord;
 	cout << "loading dictionary . . .";
 	if (myfile.is_open()) {
 		int lineNumber = 1;	
@@ -170,11 +172,8 @@ void Dictionary::loadDictionary(string dictionaryFile)
 				definition = record;
 			}
 			else if ((lineNumber % 4) == 3) {
-				Word * currentWord;
-				string::iterator x = record.begin();
-				string::iterator y = record.end();
-				int recordType = (*x - 'a') * 100 + (*(y - 1) - 'a');
-				switch (recordType)
+				int wordType = returnCodedType(  record.begin() , record.end()  );
+				switch (wordType)
 				{
 				case 2121: // Verb "vv" (v - a) * 100 + (v - a) = 2121
 					currentWord = new Verb(word, definition);
@@ -219,7 +218,13 @@ void Dictionary::loadDictionary(string dictionaryFile)
 	system("CLS");
 }
 
+int Dictionary::returnCodedType(string::iterator start, string::iterator end ) //returns unique int for verb, noun etc. for use in switch statement
+{
+	int codedType = (*start - 'a') * 100 + (*(end - 1) - 'a');
+	return codedType;
+}
+
 void Dictionary::getTotalNumberOfWords() //Prints the size of the dictionary vector
 {
-	cout << "The dictionary has: " <<size(dictionary_vector) << " word definitions." << endl;
+	cout << "The dictionary has: " << endl <<size(dictionary_vector) << " word definitions." << endl;
 }

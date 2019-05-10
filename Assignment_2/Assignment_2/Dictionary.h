@@ -30,9 +30,10 @@ public:
 	void loadGuessingGame();
 	void populateVerbVector();
 	void loadDictionary(string);
-	void loadTrigram();
+	void processTrigrams();
 	void getTotalNumberOfWords();
 private:
+	int returnCodedType(string::iterator, string::iterator);
 	void isQu(string);
 	void isThreeZees(string);
 	bool isAnagram(string, string);

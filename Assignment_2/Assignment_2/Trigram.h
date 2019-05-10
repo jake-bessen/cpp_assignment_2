@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TRIGRAM_H
+#define TRIGRAM_H
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -12,11 +14,9 @@ class Trigram
 public:
 	Trigram();
 	void loadString(string);
-	void normaliseIndex();
+	void computeLookupTables();
 	void trigramMenu();
 	void threeMostLikely();
-protected:
-
 private:
 	void populateCumulativeTable(int, int);
 	void populateProbability(int, int);
@@ -35,3 +35,4 @@ private:
 	unsigned int seed = 1;
 };
 
+#endif

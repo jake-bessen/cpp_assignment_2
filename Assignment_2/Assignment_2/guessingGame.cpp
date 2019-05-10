@@ -1,6 +1,7 @@
 #include "guessingGame.h"
 
-string guessingGame::printGuess(string revealedLetters, string wordDefinition, int wordLength) {
+string guessingGame::retrieveGuess(string revealedLetters, string wordDefinition, int wordLength) 
+{
 	string guess = revealedLetters;
 	int emptyLetters = wordLength - revealedLetters.length();
 	cout << "definition; \n"
@@ -20,8 +21,8 @@ string guessingGame::printGuess(string revealedLetters, string wordDefinition, i
 	return guess;
 }
 
-void guessingGame::guessingGameMenu(string Word, string definition){	
-	// actual program
+void guessingGame::guessingGameMenu(string Word, string definition) // state machine for guessing game
+{	
 	string guess;
 	string revealedLetters;
 	int wordLength = size(Word);
@@ -30,7 +31,7 @@ void guessingGame::guessingGameMenu(string Word, string definition){
 	while (x != -1) {
 		switch (x)	{
 		case 0:
-			guess = printGuess(revealedLetters , definition, wordLength) ;
+			guess = retrieveGuess(revealedLetters , definition, wordLength) ;
 			system("CLS");
 			if ( Word == guess ) {
 				x = 3;
@@ -43,7 +44,7 @@ void guessingGame::guessingGameMenu(string Word, string definition){
 			break;
 		case 1:
 			revealedLetters = Word[0];
-			guess = printGuess(revealedLetters , definition, wordLength) ;
+			guess = retrieveGuess(revealedLetters , definition, wordLength) ;
 			system("CLS");
 			if ( Word == guess ) {
 				x = 3;
@@ -56,7 +57,7 @@ void guessingGame::guessingGameMenu(string Word, string definition){
 			break;
 		case 2:
 			revealedLetters = { Word[0] , Word[1] };
-			guess = printGuess(revealedLetters , definition, wordLength) ;
+			guess = retrieveGuess(revealedLetters , definition, wordLength) ;
 			system("CLS");
 			if ( Word == guess ) {
 				x = 3;

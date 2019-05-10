@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PROPERNOUN_H
+#define PROPERNOUN_H
+
 #include "Noun.h"
 class ProperNoun : virtual public Noun {
 public:
@@ -7,4 +9,4 @@ public:
 	string getWord();
 	string getDefinition();
 };
-
+#endif
